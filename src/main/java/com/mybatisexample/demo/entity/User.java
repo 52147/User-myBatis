@@ -1,13 +1,39 @@
 package com.mybatisexample.demo.entity;
-import jakarta.persistence.*;
-import java.time.LocalDateTime;
 
+import jakarta.persistence.*;
 import java.sql.Timestamp;
+
 @Entity
 @Table(name = "users")
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    @Column(name = "age")
+    private int age;
+
+    @Column(name = "created_at", nullable = false)
+    private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+
+    @Column(name = "updated_at", nullable = false)
+    private Timestamp updatedAt = new Timestamp(System.currentTimeMillis());
+
+    // Getters and setters
+
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -49,27 +75,4 @@ public class User {
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "name", nullable = false)
-    private String name;
-
-    @Column(name = "email", nullable = false)
-    private String email;
-
-    @Column(name = "age")
-    private int age;
-
-    @Column(name = "created_at", nullable = false)
-    private Timestamp createdAt;
-
-    @Column(name = "updated_at", nullable = false)
-    private Timestamp updatedAt;
-
-    public void setId(Long id) {
-    }
-    // getters and setters
 }
